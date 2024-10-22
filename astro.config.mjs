@@ -1,11 +1,11 @@
+import cloudflare from "@astrojs/cloudflare";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-
-import cloudflare from "@astrojs/cloudflare";
-
+import { loadEnv } from "vite";
+const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 // https://astro.build/config
 export default defineConfig({
-	site: "http://localhost:4321",
+	site: env.SITE_URL,
 	image: {
 		service: passthroughImageService(),
 	},
